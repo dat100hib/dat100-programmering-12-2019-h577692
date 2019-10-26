@@ -1,7 +1,5 @@
 package no.hvl.dat100.jplab12.oppgave1;
 
-import no.hvl.dat100.jplab12.common.TODO;
-
 public abstract class Innlegg {
 
 	private int id;
@@ -69,11 +67,18 @@ public abstract class Innlegg {
 		
 		return id + "\n" + bruker + "\n" + dato + "\n" + likes + "\n";
 	}
-	
+
+	/*
+				<h2>Ole Olsen@23-10-2019 [0]<h2>
+                <p>DAT100 oppgave 6<p>
+                <hr>
+                <h2>Oline Olsen@24-10-2019 [0]<h2>
+                <p>HVL logo<p>
+                <iframe src="https://www.west-norway.no/wp-content/uploads/2018/05/HVL-nettside.jpg" height=600 width=800></iframe><hr>
+	 */
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
 		
-		throw new UnsupportedOperationException(TODO.method());
-				
+		return "\t\t<h2>" + bruker + "@" + dato + " [" + likes + "]</h2>\n";
 	}
 }

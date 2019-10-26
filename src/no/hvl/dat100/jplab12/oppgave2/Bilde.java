@@ -1,7 +1,5 @@
 package no.hvl.dat100.jplab12.oppgave2;
 
-import no.hvl.dat100.jplab12.common.TODO;
-
 public class Bilde extends Tekst {
 
 	private String url;
@@ -31,8 +29,7 @@ public class Bilde extends Tekst {
 
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
+
+		return super.toHTML() + "\t\t<iframe src=\"" + url + "\" height=300 width=400></iframe>\n";
 	}
 }

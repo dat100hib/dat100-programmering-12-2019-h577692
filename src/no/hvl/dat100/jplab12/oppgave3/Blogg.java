@@ -79,7 +79,6 @@ public class Blogg {
 	
 	public void slett(Innlegg innlegg) { // sletter slik at det ikke blir hull i arrayen
 
-		System.out.println(this.toString());
 		int inn = finnInnlegg(innlegg);
 		if (inn == -1) return;
 		antall--;
