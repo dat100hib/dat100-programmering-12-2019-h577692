@@ -1,72 +1,105 @@
 package no.hvl.dat100.jplab12.oppgave3;
 
-import no.hvl.dat100.jplab12.common.TODO;
-import no.hvl.dat100.jplab12.oppgave1.*;
+import no.hvl.dat100.jplab12.oppgave1.Innlegg;
+import no.hvl.dat100.jplab12.oppgave2.Tekst;
+
+import java.util.ArrayList;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	private Innlegg[] samling;
+	private int antall; // antall lagrede innlegg i samling
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this(20);
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		samling = new Innlegg[lengde];
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return antall;
 	}
-	
-	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
 
+	public Innlegg[] getSamling() {
+		return samling;
 	}
-	
+
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		for (int i = 0; i < samling.length; i++) {
+			if (samling[i] == null) return -1;
+			if (samling[i].erLik(innlegg)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		return finnInnlegg(innlegg) != -1;
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		return antall < samling.length;
 	}
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		if (finnes(innlegg)) return false;
+		if (!ledigPlass()) utvid();
+		samling[antall] = innlegg;
+		antall++;
+		return true;
 	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		var sb = new StringBuilder(Integer.toString(antall)).append("\n");
+		for (Innlegg innlegg : samling) {
+			if (innlegg == null) break;
+			sb.append(innlegg.toString());
+		}
+		return sb.toString();
 	}
 
 	// valgfrie oppgaver nedenfor
 	
 	public void utvid() {
-		throw new UnsupportedOperationException(TODO.method());
+		var samling = new Innlegg[this.samling.length * 2];
+		for (int i = 0; i < this.samling.length; i++) { // kan bruke System.arraycopy() her
+			samling[i] = this.samling[i];
+		}
+		this.samling = samling;
 	}
 	
 	public boolean leggTilUtvid(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
-		
+		return leggTil(innlegg);
 	}
 	
-	public void slett(Innlegg innlegg) {
-		
-		throw new UnsupportedOperationException(TODO.method());
+	public void slett(Innlegg innlegg) { // sletter slik at det ikke blir hull i arrayen
+
+		System.out.println(this.toString());
+		int inn = finnInnlegg(innlegg);
+		if (inn == -1) return;
+		antall--;
+		samling[inn] = samling[antall];
+		samling[antall] = null;
 	}
 	
 	public int[] search(String keyword) {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		var result = new ArrayList<Integer>();
+		for (Innlegg innlegg: samling) {
+			if (!(innlegg instanceof Tekst)) continue;
+			if (((Tekst) innlegg).getTekst().toLowerCase().contains(keyword.toLowerCase())) {
+				result.add(innlegg.getId());
+			}
+		}
 
+		var ids = new int[result.size()];
+		for (int i = 0; i < ids.length; i++) {
+			ids[i] = result.get(i);
+		}
+		return ids;
 	}
 }
