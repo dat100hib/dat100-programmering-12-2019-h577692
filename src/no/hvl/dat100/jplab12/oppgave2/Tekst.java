@@ -25,7 +25,10 @@ public class Tekst extends Innlegg {
 
 	@Override
 	public String toString() {
-		return "TEKST" + "\n" + super.toString() + tekst + "\n";
+		String type = "TEKST\n";
+		if (this instanceof Bilde) type = "BILDE\n";
+
+		return type + super.toString() + tekst + "\n";
 	}
 	
 	// Metoden nedenfor er kun for valgfri oppgave 6

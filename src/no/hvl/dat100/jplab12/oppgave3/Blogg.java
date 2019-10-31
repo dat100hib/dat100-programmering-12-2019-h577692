@@ -28,8 +28,7 @@ public class Blogg {
 
 	public int finnInnlegg(Innlegg innlegg) {
 
-		for (int i = 0; i < samling.length; i++) {
-			if (samling[i] == null) return -1;
+		for (int i = 0; i < antall; i++) {
 			if (samling[i].erLik(innlegg)) {
 				return i;
 			}
@@ -47,8 +46,8 @@ public class Blogg {
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		if (finnes(innlegg)) return false;
 		if (!ledigPlass()) utvid();
+		if (finnes(innlegg)) return false;
 		samling[antall] = innlegg;
 		antall++;
 		return true;
