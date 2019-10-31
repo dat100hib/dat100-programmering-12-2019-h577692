@@ -18,9 +18,9 @@ public class HtmlBlogg extends Blogg {
 	@Override
 	public String toString() {
 		var sb = new StringBuilder(HTMLPREFIX);
-		for (Innlegg innlegg : getSamling()) {
-			if (innlegg == null) break;
-			sb.append(innlegg.toHTML()).append("\t\t<hr>\n");
+		Innlegg[] samling = getSamling();
+		for (int i = 0; i < getAntall(); i++) {
+			sb.append(samling[i].toHTML()).append("\t\t<hr>\n");
 		}
 		sb.append(HTMLPOSTFIX);
 		return sb.toString();
