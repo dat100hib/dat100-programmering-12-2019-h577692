@@ -76,13 +76,14 @@ public class Blogg {
 		return leggTil(innlegg);
 	}
 	
-	public void slett(Innlegg innlegg) { // sletter slik at det ikke blir hull i arrayen
+	public boolean slett(Innlegg innlegg) { // sletter slik at det ikke blir hull i arrayen
 
 		int inn = finnInnlegg(innlegg);
-		if (inn == -1) return;
+		if (inn == -1) return false;
 		antall--;
 		samling[inn] = samling[antall];
 		samling[antall] = null;
+		return true;
 	}
 	
 	public int[] search(String keyword) {
